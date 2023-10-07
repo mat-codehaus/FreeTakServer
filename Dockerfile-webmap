@@ -1,0 +1,13 @@
+FROM debian:bullseye-slim
+
+RUN apt update && apt install wget unzip curl -y
+
+WORKDIR /app
+
+RUN wget https://github.com/FreeTAKTeam/FreeTAKHub/releases/download/v0.2.5/FTH-webmap-linux-0.2.5.zip && \
+  unzip FTH-webmap-linux-0.2.5.zip && \
+  rm FTH-webmap-linux-0.2.5.zip && \
+  chmod +x FTH-webmap-linux-0.2.5 && \
+  sed -i 's/"FTH_FTS_URL": "204.48.30.216"/"FTH_FTS_URL": "fts"/g' webMAP_config.json
+
+ENTRYPOINT [ "./FTH-webmap-linux-0.2.5", "webMAP_config.json" ]

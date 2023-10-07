@@ -1,9 +1,11 @@
-FROM python:3.8
+FROM python:3.8-slim-bullseye
+
+RUN apt-get update && apt-get install -y netcat
 
 # don't use root, let's not have FTS be used as a priv escalation in the wild
 RUN groupadd -r freetak && useradd -m -r -g freetak freetak
 RUN mkdir /opt/FTSData ; chown -R freetak:freetak /opt/FTSData 
-USER freetak 
+# USER freetak 
 
 # This needs the trailing slash
 ENV FTS_DATA_PATH="/opt/FTSData/"
@@ -30,4 +32,4 @@ EXPOSE 9000
 EXPOSE 19023
 
 #ENTRYPOINT [ "python", "TAKfreeServer/run.py", "-p", "8087" ]
-ENTRYPOINT [ "python3", "-m", "FreeTAKServer.controllers.services.FTS", "-DataPackageIP", "0.0.0.0", "-AutoStart", "True"]
+ENTRYPOINT [ "python3", "-m", "FreeTAKServer.controllers.services.FTS"]

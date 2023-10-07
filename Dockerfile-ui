@@ -1,0 +1,14 @@
+FROM python:3.8
+
+RUN pip3 install flask lxml flask_login requests
+
+RUN pip3 install FreeTAKServer[ui]
+
+COPY ./config.py /usr/local/lib/python3.8/site-packages/FreeTAKServer-UI/config.py
+
+# APIPort
+EXPOSE 5000
+
+RUN chmod +x /usr/local/lib/python3.8/site-packages/FreeTAKServer-UI/run.py
+
+ENTRYPOINT ["python", "/usr/local/lib/python3.8/site-packages/FreeTAKServer-UI/run.py"]
