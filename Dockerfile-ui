@@ -1,5 +1,7 @@
 FROM python:3.8
 
+RUN pip install --upgrade pip
+
 RUN pip3 install flask lxml flask_login requests
 
 RUN pip3 install FreeTAKServer[ui]

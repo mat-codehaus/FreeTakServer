@@ -25,7 +25,7 @@ class Config(object):
     keyfilepath = f"{certpath}pubserver.key.unencrypted"
 
     # this IP will be used to connect with the FTS API
-    IP = '192.168.1.250'
+    IP = '172.24.16.30'
 
     # Port the  UI uses to communicate with the API
     PORT = '19023'
@@ -34,7 +34,7 @@ class Config(object):
     APPIP = '0.0.0.0'
 
     # webmap IP
-    WEBMAPIP = "192.168.1.250"
+    WEBMAPIP = "172.24.16.30"
 
     # webmap port
     WEBMAPPORT = 8000
